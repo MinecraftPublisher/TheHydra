@@ -13,7 +13,7 @@
     <link rel='shortcut icon' href='./favicon.png'>
 </head>
 
-<body>
+<body onclick="init()" onload="init()">
     <div class="icon">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
     <script>
         window.plsclose = 'no'
@@ -43,14 +43,16 @@
             return false;
         }
 
-        if (window.clone === 'main') {
-            openNew('safe')
-        } else if (window.clone === 'safe') {
-            interval()
-            openNew('popup')
-            openNew('popup')
-        } else {
-            interval()
+        function init() {
+            if (window.clone === 'main') {
+                openNew('safe')
+            } else if (window.clone === 'safe') {
+                interval()
+                openNew('popup')
+                openNew('popup')
+            } else {
+                interval()
+            }
         }
     </script>
     <style>
