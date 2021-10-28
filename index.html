@@ -12,7 +12,7 @@
     <script>
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
-        window.time = () => ~~(Date.now() / 500)
+        window.time = () => ~~(Date.now() / 2000)
         window.timestamp = window.time()
         
         function update() {
@@ -25,7 +25,7 @@
                     clearInterval(inter)
                     openNew('safe')
                 }
-            }, 200)
+            }, 500)
         }
         
         function openNew(input) {
