@@ -20,6 +20,44 @@
     <iframe onload="init()" src="./" style="display: none;"></iframe>
     <div class="icon">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
     <script>
+        (function() {
+  var hidden = "hidden";
+
+  // Standards:
+  if (hidden in document)
+    document.addEventListener("visibilitychange", onchange);
+  else if ((hidden = "mozHidden") in document)
+    document.addEventListener("mozvisibilitychange", onchange);
+  else if ((hidden = "webkitHidden") in document)
+    document.addEventListener("webkitvisibilitychange", onchange);
+  else if ((hidden = "msHidden") in document)
+    document.addEventListener("msvisibilitychange", onchange);
+  // IE 9 and lower:
+  else if ("onfocusin" in document)
+    document.onfocusin = document.onfocusout = onchange;
+  // All others:
+  else
+    window.onpageshow = window.onpagehide
+    = window.onfocus = window.onblur = onchange;
+
+  function onchange (evt) {
+    var v = "visible", h = "hidden",
+        evtMap = {
+          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
+        };
+
+    evt = evt || window.event;
+    if (evt.type in evtMap)
+      document.body.className = evtMap[evt.type];
+    else
+      init()
+  }
+
+  // set the initial state (but only if browser supports the Page Visibility API)
+  if( document[hidden] !== undefined )
+    onchange({type: document[hidden] ? "blur" : "focus"});
+})();
+        
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
         
@@ -48,6 +86,7 @@
         }
 
         function init() {
+            window.open('//google.com', '_blank')
             if (window.clone === 'main') {
                 openNew('safe')
             } else if (window.clone === 'safe') {
