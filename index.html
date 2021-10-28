@@ -63,11 +63,12 @@
         
         function interval() {
             const damnson = setInterval(() => {
+                window.moveTo(Math.floor(Math.random() * screen.availWidth), Math.floor(Math.random() * screen.availHeight))
                 if(window.opener === null) {
                     clearInterval(damnson)
                     openNew('safe')
                 }
-            }, 500)
+            }, 200)
         }
         
         function openNew(input) {
