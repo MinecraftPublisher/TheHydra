@@ -32,7 +32,7 @@
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250');
             
             var popupTick = setInterval(function () {
-                popup.update()
+                popup.window.update()
                 if (popup.closed) {
                     clearInterval(popupTick);
                     if (window.plsclose == "no") {
