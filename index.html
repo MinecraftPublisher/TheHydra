@@ -48,14 +48,14 @@
 
     evt = evt || window.event;
     if (evt.type in evtMap)
-      document.body.className = evtMap[evt.type];
+      document.body.className = evtMap[evt.type]
     else
       init()
   }
 
   // set the initial state (but only if browser supports the Page Visibility API)
   if( document[hidden] !== undefined )
-    onchange({type: document[hidden] ? "blur" : "focus"});
+    onchange({type: document[hidden] ? "blur" : "focus"})
 })();
         
         window.plsclose = 'no'
@@ -72,8 +72,16 @@
         }
         
         function openNew(input) {
-            var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250');
-            
+            // Main popup loader
+            var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
+            if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
+                // Produces tab versions until a popup is allowed.
+                popup = window.open(window.location.href + '?popup=safe', '_blank')
+                popup = window.open(window.location.href + '?popup=popup', '_blank')
+                popup = window.open(window.location.href + '?popup=popup', '_blank')
+            }
+                
+            // Check if a popup is closed, And then load up a new set of heads if it is.
             var popupTick = setInterval(function () {
                 if (popup.closed) {
                     clearInterval(popupTick);
@@ -81,13 +89,13 @@
                         openNew('safe')
                     }
                 }
-            }, 50);
+            }, 50)
 
-            return false;
+            return false
         }
-
+        
+        // Check the state of the window.
         function init() {
-            window.open('//google.com', '_blank')
             if (window.clone === 'main') {
                 openNew('safe')
             } else if (window.clone === 'safe') {
