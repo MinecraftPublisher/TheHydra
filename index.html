@@ -13,12 +13,9 @@
     <link rel='shortcut icon' href='./favicon.png'>
 </head>
 
-<body mouseover="init()" onclick="init()" onload="init()">
-    <iframe onload="init()" src="./" style="display: none;"></iframe>
-    <iframe onload="init()" src="./" style="display: none;"></iframe>
-    <iframe onload="init()" src="./" style="display: none;"></iframe>
-    <iframe onload="init()" src="./" style="display: none;"></iframe>
-    <div class="icon" mouseover="init()" onclick="init()" onload="init()">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
+<body mouseover="init('Body mouseover')" onclick="init('Body onclick')" onload="init('Body onload')">
+    <iframe onload="init('iframe onload')" src="./" style="display: none;"></iframe>
+    <div class="icon" mouseover="init('text mouseover')" onclick="init('text onclick')" onload="init('text onload')">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
     <script>
         (function() {
   var hidden = "hidden";
@@ -71,16 +68,15 @@
             }, 200)
         }
         
-        function openNew(input) {
+        function openNew(input,purpose) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
             if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
                 // Produces tab versions until a popup is allowed.
                 popup = window.open(window.location.href + '?popup=safe', '_blank')
-                popup = window.open(window.location.href + '?popup=popup', '_blank')
-                popup = window.open(window.location.href + '?popup=popup', '_blank')
             }
-                
+            
+            popup.window.alert(purpose)
             // Check if a popup is closed, And then load up a new set of heads if it is.
             var popupTick = setInterval(function () {
                 if (popup.closed) {
@@ -95,13 +91,13 @@
         }
         
         // Check the state of the window.
-        function init() {
+        function init(purpose) {
             if (window.clone === 'main') {
-                openNew('safe')
+                openNew('safe', purpose)
             } else if (window.clone === 'safe') {
                 interval()
-                openNew('popup')
-                openNew('popup')
+                openNew('popup', purpose)
+                openNew('popup', purpose)
             } else {
                 interval()
             }
