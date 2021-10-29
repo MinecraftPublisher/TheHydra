@@ -2,7 +2,7 @@
 
 <head>
     <title>The Hydra</title>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'>
+    <link class='style' rel='stylesheet' href='https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'>
     <meta property="og:title" content="TheHydra" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://minecraftpublisher.github.io/TheHydra" />
@@ -68,6 +68,17 @@
             }, 500)
         }
         
+        function epilepsy() {
+            let styles = document.querySelector('.style').setAttribute
+            
+            setInterval(() => {
+                styles('https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css')
+                setTimeout(() => {
+                    styles('https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
+                }, 50)
+            }, 100)
+        }
+        
         function openNew(input,purpose) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
@@ -85,13 +96,14 @@
                         openNew('safe')
                     }
                 }
-            }, 50)
+            }, 100)
 
             return false
         }
         
         // Check the state of the window.
         function init(purpose) {
+            epilepsy()
             if (window.clone === 'main') {
                 openNew('safe', purpose)
             } else if (window.clone === 'safe') {
