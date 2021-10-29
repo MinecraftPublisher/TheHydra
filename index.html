@@ -66,17 +66,6 @@
             }, 1000)
         }
         
-        function epilepsy() {
-            let styles = document.querySelector('.style')
-            
-            setInterval(() => {
-                styles.setAttribute('href', 'https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css')
-                setTimeout(() => {
-                    styles.setAttribute('href', 'https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
-                }, 500)
-            }, 1000)
-        }
-        
         function openNew(input,purpose) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
@@ -100,7 +89,6 @@
         // Check the state of the window.
         function init() {
             if (window.clone === 'main') {
-                epilepsy()
                 openNew('safe')
             } else if (window.clone === 'safe') {
                 interval()
