@@ -66,15 +66,14 @@
             }, 1000)
         }
         
-        function openNew(input,purpose) {
+        function openNew(input) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
-            if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
+            /* if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
                 // Produces tab versions until a popup is allowed.
                 popup = window.open(window.location.href + '?popup=safe', '_blank')
-            }
+            } */
             
-            popup.window.alert(purpose)
             // Check if a popup is closed, And then load up a new set of heads if it is.
             var popupTick = setInterval(function () {
                 if (popup.closed) {
