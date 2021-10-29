@@ -32,10 +32,6 @@
         function openNew(input) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
-            if(!popup || popup.closed || typeof popup.closed=='undefined') {
-                // Produces tab versions until a popup is allowed.
-                popup = window.open(window.location.href + '?popup=safe', '_blank')
-            }
             
             // Check if a popup is closed, And then load up a new set of heads if it is.
             var popupTick = setInterval(function () {
