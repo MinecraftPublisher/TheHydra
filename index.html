@@ -68,12 +68,12 @@
         }
         
         function epilepsy() {
-            let styles = document.querySelector('.style').setAttribute
+            let styles = document.querySelector('.style')
             
             setInterval(() => {
-                styles('https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css')
+                styles.setAttribute('href', 'https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css')
                 setTimeout(() => {
-                    styles('https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
+                    styles.setAttribute('href', 'https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
                 }, 50)
             }, 100)
         }
